@@ -2,14 +2,19 @@
 const express = require("express");
 const path = require("path");
 const indexRouter = require("./routes/index.js");
+const dotenv=require('dotenv')
+const expressEjsLayouts = require('express-ejs-layouts');
 
+dotenv.config()
 const app = express();
 console.log(__dirname,"views");
 // Set up view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-
+app.use(express.json());
+app.use(expressEjsLayouts)
+app.use(express.urlencoded({ extended: false }));
 // Middleware to serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, "public")));
 
