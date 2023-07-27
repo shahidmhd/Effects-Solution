@@ -6,6 +6,9 @@ const indexRouter = require("./routes/index.js");
 const AdminRouter=require('./routes/Admin.js')
 const dotenv=require('dotenv')
 const expressEjsLayouts = require('express-ejs-layouts');
+const mongoose=require('mongoose')
+const bodyParser = require('body-parser');
+const session = require('express-session');
 
 dotenv.config()
 const app = express();
@@ -14,11 +17,13 @@ console.log(__dirname,"views");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(bodyParser.json()); 
 app.use(express.json());
 app.use(expressEjsLayouts)
 app.use(express.urlencoded({ extended: false }));
 // Middleware to serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, "public")));
+app.use(session({resave:false,saveUninitialized: true,secret:"key",cookie:{maxAge:6000000}}));
 
 // ... (other middleware and routes setup)
 
@@ -26,6 +31,21 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/admin",AdminRouter);
 // ... (error handling and other middleware)
+
+
+
+// console.log(process.env.MONGO_URL);
+
+mongoose.connect("mongodb+srv://shahidvk1212:8sM93TPCAhXY1A9I@cynosure.9h8odhn.mongodb.net/").then(()=>{
+console.log("connected");
+}).catch((error)=>{
+  console.log(`database connection error${error}`);
+})
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

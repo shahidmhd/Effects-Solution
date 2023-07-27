@@ -1,4 +1,5 @@
 <!-- Your HTML code -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- Add Axios library -->
 <!-- Your HTML code -->
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Sign In Start -->
@@ -66,9 +67,17 @@
             }
                 try {
                 // Send Axios request with async/await
-                await axios.post('/admin/login', { email: email, password: password });
-               
+                const userdata={
+                    email:email,
+                    password:password
+                }
+            const res=await axios.post('/admin/login',userdata);
                 // You can handle the response data here
+                if(res.data.status){
+                    location.assign('/admin/')
+                }else{
+                    location.assign('/admin/login')
+                }
             } catch (error) {
                 console.error('Error:', error);
                 // Handle errors here
