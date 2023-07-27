@@ -1,5 +1,7 @@
 const admin = require('../models/Adminmodel');
 const bcrypt =require('bcrypt')
+const cloudinary=require('../util/cloudinary')
+const Post=require('../models/Postmodel')
 
 
 
@@ -58,6 +60,17 @@ module.exports = {
     RenderForm:async(req,res)=>{
         try{
         res.render('admin/addform',{layout:"adminlayout"})
+        }catch(err){
+            console.log(err);
+        }
+    },
+    Addpost:async(req,res)=>{
+        try{
+            const result = await cloudinary.uploader.upload(req.file.path);
+            const imageurl=result.url
+           const {title,description}=req.body
+           await Post.create({title,description,image:imageurl})
+           res.redirect('/admin/form')
         }catch(err){
             console.log(err);
         }
