@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const express = require("express");
 const path = require("path");
 const indexRouter = require("./routes/index.js");
+const AdminRouter=require('./routes/Admin.js')
 const dotenv=require('dotenv')
 const expressEjsLayouts = require('express-ejs-layouts');
 
@@ -23,7 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Use the indexRouter for handling routes
 app.use("/", indexRouter);
-
+app.use("/admin",AdminRouter);
 // ... (error handling and other middleware)
 
 // catch 404 and forward to error handler
