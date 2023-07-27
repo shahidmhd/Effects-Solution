@@ -1,8 +1,8 @@
 module.exports = {
     userHome: async (req, res) => {
         try {
-            res.render('user/Home')
-
+            const activeclass = "current-menu-item";
+            res.render('user/Home', { activeclass });
         } catch (err) {
             console.log(err);
         }
