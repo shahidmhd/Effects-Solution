@@ -8,6 +8,7 @@ router.get("/",(req,res)=>{
 router.get("/login",Admincontroller.GetLogin);
 router.post("/login",Admincontroller.PostLogin);
 router.get("/logout",Admincontroller.AdminLogout);
+router.get('/form',Admincontroller.RenderForm)
 
 
 

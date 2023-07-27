@@ -54,6 +54,13 @@ module.exports = {
              console.log(err);
          }
 
+    },
+    RenderForm:async(req,res)=>{
+        try{
+        res.render('admin/addform',{layout:"adminlayout"})
+        }catch(err){
+            console.log(err);
+        }
     }
     // You may add more methods for other admin-related actions
 };

@@ -1,0 +1,136 @@
+ <!-- Content Start -->
+ <div class="content">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+        <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+            <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+        </a>
+        <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+        </a>
+        <form class="d-none d-md-flex ms-4">
+            <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+        </form>
+        <div class="navbar-nav align-items-center ms-auto">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                    <span class="d-none d-lg-inline-flex">John Doe</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                    <a href="#" class="dropdown-item">My Profile</a>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="#" class="dropdown-item">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Form Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            
+            <form action="/submit" method="POST" enctype="multipart/form-data">
+                <div class="col-sm-12">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Web Development</h6>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Text">
+                            <label for="title">Title</label>
+                        </div>
+            
+                        <div class="form-floating">
+                            <textarea class="form-control" name="description" placeholder="Leave a comment here" id="description" style="height: 150px;"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                        <div>
+                            <label for="formFileLg" class="form-label"></label>
+                            <input class="form-control form-control-lg bg-dark" id="formFileLg" name="image" type="file" onchange="displaySelectedImage(event)">
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="bg-secondary rounded h-100 p-4">
+                                <div class="m-n2">
+                                    <button class="btn btn-primary w-100 m-2" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- <div class="col-sm-6">
+                <img id="selectedImage" src="#" alt="Selected Image" style="display: none; height: 500px; max-width:800px;">
+            </div> -->
+        </div>
+    </div>
+    <!-- Form End -->
+
+
+    <!-- Footer Start -->
+        <!-- Table Start -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+                <div class="col-12">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Web Development</h6>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">image</th>
+                                        <th scope="col">option</th>
+                                        <th scope="col">option</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>John</td>
+                                        <td> <p style="max-width: 120px;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            white-space: nowrap;">oedfgfdgggggggggggggggggssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</p></td>
+                                        <td><img style="width:50px; height: 50px;" src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80"></img></td>
+                                        <td>  <button type="button" class="btn btn-info rounded-pill m-2">Edit</button></td>
+                                        <td>       <button type="button" class="btn btn-danger rounded-pill m-2">Delete</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Table End -->
+
+    <!-- Footer End -->
+</div>
+<!-- Content End -->
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<script>
+    function displaySelectedImage(event) {
+        const selectedFile = event.target.files[0];
+        const selectedImageElement = document.getElementById('selectedImage');
+
+        if (selectedFile) {
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                selectedImageElement.src = reader.result;
+                selectedImageElement.style.display = 'block';
+            };
+
+            reader.readAsDataURL(selectedFile);
+        }
+    }
+</script>
