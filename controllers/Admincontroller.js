@@ -4,7 +4,6 @@ const cloudinary=require('../util/cloudinary')
 const Post=require('../models/Postmodel')
 
 
-
 module.exports = {
     GetLogin: async (req, res) => {
         try {
@@ -59,7 +58,9 @@ module.exports = {
     },
     RenderForm:async(req,res)=>{
         try{
-        res.render('admin/addform',{layout:"adminlayout"})
+        const posts=await Post.findOne()
+        console.log(posts);
+        res.render('admin/addform',{layout:"adminlayout",posts})
         }catch(err){
             console.log(err);
         }

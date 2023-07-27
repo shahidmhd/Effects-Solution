@@ -61,16 +61,32 @@
                 
             
             </div>
+            <% if (posts) { %>
             <div class="col-xl-8 col-lg-8 mt-4 mt-lg-0">
-                <img src="images/about-us/3.png" alt="">
+                <% if (posts.image) { %>
+                    <img style="width:40em; height: 35em;" src="<%= posts?.image %>" alt="">
+                  <% } else { %>
+                    <img src="images/about-us/3.png" alt="">
+                  <% } %>
                 <h2 class="pq-heading mt-4">&nbsp;</h2>
             </div>
             <div  class="parallax">
-                <center><h2 class="pq-heading mt-4">WEB DEVELOPMENT FOR BUSINESSES USING FULL STACK</h2>
+                <% if (posts.title) { %>
+                <center><h2 class="pq-heading mt-4"><%= posts?.title %></h2>
                   <p>&nbsp;</p>
                 </center>
-                <p class="pq-description" align="justify">We don't only create websites. We design and build websites that are built to deliver outstanding user experiences. We've been developing high-performance websites and online applications using cutting-edge frameworks and technologies for years. Our team of designers and developers has relentlessly assisted businesses seeking digital excellence and change.</p>
-             
+                <% } else { %>
+                    <center><h2 class="pq-heading mt-4">WEB DEVELOPMENT FOR BUSINESSES USING FULL STACK</h2>
+                        <p>&nbsp;</p>
+                      </center>
+                    <% } %>
+                    <% if (posts.description) { %>
+                <p class="pq-description" align="justify"><%= posts?.description %></p>
+                <% } else { %>
+                    <p class="pq-description" align="justify">We don't only create websites. We design and build websites that are built to deliver outstanding user experiences. We've been developing high-performance websites and online applications using cutting-edge frameworks and technologies for years. Our team of designers and developers has relentlessly assisted businesses seeking digital excellence and change.</p>
+                    <% } %>
+
+                    <% } %>
             <section class="container pt-3 mb-3">
 <h2 class="h3 block-title text-center" style="color:orange;font-size:50px;"><small>OUR WEB DEVELOPMENT & DESIGN SERVICES</small></h2>
                 <span>With our extensive range of service options designed to assist you in exceeding your sales targets and lead generation activities, you may improve the performance of your website.</span>
@@ -497,3 +513,4 @@ Consultancy firm providing competitively priced outsourcing services to companie
     <a class="top" id="#top" href="#"> <i class="ion-ios-arrow-up"></i> </a>
 </div>
 <!--Back to top End-->
+

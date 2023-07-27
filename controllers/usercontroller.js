@@ -1,3 +1,5 @@
+const Post=require('../models/Postmodel')
+
 module.exports = {
     userHome: async (req, res) => {
         try {
@@ -30,7 +32,9 @@ module.exports = {
     },
     softwareDevelopment: async (req, res) => {
         try {
-            res.render('user/SoftwareDevelopment')
+            const posts=await Post.findOne()
+            console.log(posts,"hhhhhhhhhhhhhh");
+            res.render('user/SoftwareDevelopment',{posts})
         } catch (err) {
             console.log(err);
         }
