@@ -69,9 +69,24 @@
                 </div>
             </div>
             <div class="col-xl-8 col-lg-8 mt-4 mt-lg-0">
-                <img src="images/about-us/1.png" alt="">
-                <h2 class="pq-heading mt-4">AGILE ANDROID APP DEVELOPMENT OF ANDROID APPS FOR CONTEMPORARY BUSINESSES</h2>
-                <p class="pq-description">Work with an Android development company that can take your app from conception to launch with a unique user experience, full-stack support, and usable features on all Android devices.</p>
+                <% if (posts) { %>
+                    <% if (posts.image) { %>
+                        <img style="width:40em; height: 35em;" src="<%= posts?.image %>" alt="">
+                        <% } else { %>
+                            <img src="images/about-us/1.png" alt="">
+                            <% } %>
+                            <% if (posts.title) { %>
+                                <h2 class="pq-heading mt-4"><%= posts?.title %></h2>
+                                <% } else { %>
+                                    <h2 class="pq-heading mt-4">AGILE ANDROID APP DEVELOPMENT OF ANDROID APPS FOR CONTEMPORARY BUSINESSES</h2>
+                                    <% } %>
+                                    <% if (posts.description) { %>
+                                        <p class="pq-description"><%= posts?.description %></p>
+                                        <% } else { %>
+                                            <p class="pq-description">Work with an Android development company that can take your app from conception to launch with a unique user experience, full-stack support, and usable features on all Android devices.</p>
+                                            <% } %>
+               
+                <% } %>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12">
                         <div class="pq-fancy-box pq-fancybox-1">

@@ -1,28 +1,32 @@
-const Webdev = require('../models/Weddevmodel')
+const Graphic=require('../models/GraphicDesignModel')
 const cloudinary = require('../util/cloudinary')
 // const Post=require('../models/Postmodel')
 
 
 module.exports = {
-    AddWebdev: async (req, res) => {
+    AddGraphic: async (req, res) => {
         try {
-            const post = await Webdev.find()
+            const post = await Graphic.find()
+            console.log(post);
             if (post) {
-                await Webdev.deleteMany({});
+                await Graphic.deleteMany({});
             }
+
+            // console.log(req.file.path,"hhhhhh");
             const result = await cloudinary.uploader.upload(req.file.path);
             const imageurl = result.url
+            console.log(imageurl);
             const { title, description } = req.body
-            await Webdev.create({ title, description, image: imageurl })
-            res.redirect('/admin/webdevelopment')
+            await  Graphic.create({ title, description, image: imageurl })
+            res.redirect('/admin/GraphicDesigning')
         } catch (err) {
             console.log(err);
         }
     },
-    renderWebdev: async (req, res) => {
+    renderGraphic: async (req, res) => {
         try {
-            const posts=await Webdev.findOne()
-            res.render('admin/Addwebdevelopment', { layout: 'adminlayout',posts })
+            const posts=await Graphic.findOne()
+            res.render('admin/GraphicDesign', { layout: 'adminlayout',posts })
         } catch (err) {
             console.log(err);
         }
@@ -30,8 +34,8 @@ module.exports = {
     DeletePost:async(req,res)=>{
         try{
             const {id} = req.params
-         await Webdev.findByIdAndDelete({ _id: id });
-         res.redirect('/admin/webdevelopment')
+         await Graphic.findByIdAndDelete({ _id: id });
+         res.redirect('/admin/GraphicDesigning')
         }catch(err){
             console.log(err);
         }
@@ -40,14 +44,15 @@ module.exports = {
         try{
         const {id} = req.params
         const {title,description}=req.body
-        await Webdev.findByIdAndUpdate(
+        await Graphic.findByIdAndUpdate(
             {_id:id},
             {title:title,description:description }, // No need to destructure the description parameter
             { new: true }
           );
-         res.redirect('/admin/webdevelopment')
+          res.redirect('/admin/GraphicDesigning')
         }catch(err){
             console.log(err);
         }
     }
+    
 };

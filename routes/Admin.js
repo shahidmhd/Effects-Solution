@@ -10,6 +10,7 @@ const webanalyticscontroller=require('../controllers/WebAnalitic')
 const Ecommercecontroller=require('../controllers/Ecommercecontroller')
 const Enterpricecontroller=require('../controllers/Enterpricecontroller')
 const itstafcontroller=require('../controllers/itstafcontroller')
+const Graphiccontroller=require('../controllers/GraphicDesigncontroller')
 const upload=require("../util/multer")
 
 router.get("/",(req,res)=>{
@@ -71,6 +72,11 @@ router.get('/itstaf',itstafcontroller.renderitstaf)
 router.post('/additstaf',upload.single('image'),itstafcontroller.Additstaf)
 router.get('/deleteitstaf/:id',itstafcontroller.DeletePost)
 router.post('/edititstaf/:id',itstafcontroller.editpost)
+
+router.get('/GraphicDesigning',Graphiccontroller.renderGraphic)
+router.post('/addGraphic',upload.single('image'),Graphiccontroller.AddGraphic)
+router.get('/deleteGraphic/:id',Graphiccontroller.DeletePost)
+router.post('/editGraphic/:id',Graphiccontroller.editpost)
 
 
 module.exports=router

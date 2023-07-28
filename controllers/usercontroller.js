@@ -1,4 +1,7 @@
 const Post=require('../models/Postmodel')
+const Webdev = require('../models/Weddevmodel')
+const Mobdev = require('../models/Mobdevmodel')
+const Appdev = require('../models/Appdevmodel')
 
 module.exports = {
     userHome: async (req, res) => {
@@ -40,21 +43,24 @@ module.exports = {
     },
     webDevelopment: async (req, res) => {
         try {
-            res.render('user/webDevelopment')
+            const posts=await Webdev.findOne()
+            res.render('user/webDevelopment',{posts})
         } catch (err) {
             console.log(err);
         }
     },
     mobileDevelopment: async (req, res) => {
         try {
-            res.render('user/mobileDevelopment')
+            const posts=await Mobdev.findOne()
+            res.render('user/mobileDevelopment',{posts})
         } catch (err) {
             console.log(err);
         }
     },
     AppDevelopment: async (req, res) => {
         try {
-            res.render('user/AppDevelopment')
+            const posts=await Appdev.findOne()
+            res.render('user/AppDevelopment',{posts})
         } catch (err) {
             console.log(err);
         }
