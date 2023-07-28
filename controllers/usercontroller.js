@@ -33,7 +33,6 @@ module.exports = {
     softwareDevelopment: async (req, res) => {
         try {
             const posts=await Post.findOne()
-            console.log(posts,"hhhhhhhhhhhhhh");
             res.render('user/SoftwareDevelopment',{posts})
         } catch (err) {
             console.log(err);

@@ -11,6 +11,8 @@ router.post("/login",Admincontroller.PostLogin);
 router.get("/logout",Admincontroller.AdminLogout);
 router.get('/form',Admincontroller.RenderForm)
 router.post('/addpost',upload.single('image'),Admincontroller.Addpost)
+router.get('/deletepost/:id',Admincontroller.DeletePost)
+router.post('/editpost/:id',Admincontroller.editpost)
 
 
 

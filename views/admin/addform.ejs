@@ -99,8 +99,8 @@
                                             text-overflow: ellipsis;
                                             white-space: nowrap;"><%=posts.description%></p></td>
                                         <td><img style="width:50px; height: 50px;" src="<%=posts.image%>"></img></td>
-                                        <td><button type="button" class="btn btn-info rounded-pill m-2">Edit</button></td>
-                                        <td><button type="button" class="btn btn-danger rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button></td>
+                                        <td><button type="button" class="btn btn-info rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModals<%= posts._id %>">Edit</button></td>
+                                        <td><button type="button" class="btn btn-danger rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModal<%= posts._id %>">Delete</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -122,9 +122,9 @@
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 </div>
-
+<% if (posts) { %>
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal<%= posts._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -136,8 +136,61 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Yes, Delete</button>
+          <a  href="/admin/deletepost/<%=posts._id%>" class="btn btn-primary">Yes, Delete</a>
         </div>
       </div>
     </div>
   </div>
+
+
+
+
+
+
+  <% } %>
+  <% if (posts) { %>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModals<%= posts._id %>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(11, 1, 1);">Edit your content</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/admin/editpost/<%= posts._id %>" method="POST">
+          <div class="modal-body">
+            <div class="col-sm-12">
+              <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Web Development</h6>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="title" name="title" value="<%= posts.title %>" placeholder="Enter Text">
+                  <label for="title">Title</label>
+                </div>
+  
+                <div class="form-floating">
+                  <label for="description">Description</label>
+                  <textarea class="form-control" name="description" placeholder="Write description" id="description" style="height: 150px;">
+                    <%= posts.description %>
+                  </textarea>
+                </div>
+                <div class="col-sm-12">
+                  <div class="bg-secondary rounded h-100 p-4">
+                    <div class="m-n2">
+                      <button class="btn btn-primary w-100 m-2" type="submit">Submit</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+    
+    
+    
+    
+      <% } %>
+  

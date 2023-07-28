@@ -59,7 +59,6 @@ module.exports = {
     RenderForm:async(req,res)=>{
         try{
         const posts=await Post.findOne()
-        console.log(posts);
         res.render('admin/addform',{layout:"adminlayout",posts})
         }catch(err){
             console.log(err);
@@ -67,11 +66,38 @@ module.exports = {
     },
     Addpost:async(req,res)=>{
         try{
+            const post=await Post.find()
+            if(post){
+                await Post.deleteMany({});
+            }
             const result = await cloudinary.uploader.upload(req.file.path);
             const imageurl=result.url
            const {title,description}=req.body
            await Post.create({title,description,image:imageurl})
            res.redirect('/admin/form')
+        }catch(err){
+            console.log(err);
+        }
+    },
+    DeletePost:async(req,res)=>{
+        try{
+            const {id} = req.params
+         await Post.findByIdAndDelete({ _id: id });
+         res.redirect('/admin/form')
+        }catch(err){
+            console.log(err);
+        }
+    },
+    editpost:async(req,res)=>{
+        try{
+        const {id} = req.params
+        const {title,description}=req.body
+        await Post.findByIdAndUpdate(
+            {_id:id},
+            {title:title,description:description }, // No need to destructure the description parameter
+            { new: true }
+          );
+         res.redirect('/admin/form')
         }catch(err){
             console.log(err);
         }
