@@ -1,4 +1,3 @@
-
  <!-- Content Start -->
  <div class="content">
     <!-- Navbar Start -->
@@ -33,10 +32,10 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             
-            <form action="/admin/addappdev" method="POST" enctype="multipart/form-data">
+            <form action="/admin/addWebAnalytics" method="POST" enctype="multipart/form-data">
                 <div class="col-sm-12">
                     <div class="bg-secondary rounded h-100 p-4">
-                        <h6 class="mb-4">App Development</h6>
+                        <h6 class="mb-4">Web Analytics</h6>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="title" name="title" placeholder="Enter Text">
                             <label for="title">Title</label>
@@ -66,10 +65,9 @@
         </div>
     </div>
     <!-- Form End -->
-  
-  
-    <!-- Footer Start -->
-    
+
+
+    <% if (posts) { %>
         <!-- Table Start -->
         <div class="container-fluid pt-4 px-4">
             <div class="row g-4">
@@ -93,14 +91,14 @@
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td>ghjgjgjghj</td>
+                                        <td><%=posts.title%></td>
                                         <td> <p style="max-width: 120px;
                                             overflow: hidden;
                                             text-overflow: ellipsis;
-                                            white-space: nowrap;">fgff</p></td>
-                                        <td><img style="width:50px; height: 50px;" src=""></img></td>
-                                        <td><button type="button" class="btn btn-info rounded-pill m-2" >Edit</button></td>
-                                        <td><button type="button" class="btn btn-danger rounded-pill m-2"data-bs-toggle="modal" data-bs-target="#exampleModal<%= posts._id %>" >Delete</button></td>
+                                            white-space: nowrap;"><%=posts.description%></p></td>
+                                        <td><img style="width:50px; height: 50px;" src="<%=posts.image%>"></img></td>
+                                        <td><button type="button" class="btn btn-info rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModals<%= posts._id %>">Edit</button></td>
+                                        <td><button type="button" class="btn btn-danger rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModal<%= posts._id %>">Delete</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -111,7 +109,9 @@
             </div>
         </div>
         <!-- Table End -->
-       
+        <% } else { %>
+            <h1 style="color: red;">  images Not found</h1>
+        <% } %>
     <!-- Footer End -->
   </div>
   <!-- Content End -->
@@ -136,10 +136,61 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <a  href="/admin/deleteWeb/<%=posts._id%>" class="btn btn-primary">Yes, Delete</a>
+              <a  href="/admin/deleteWebAlalytics/<%=posts._id%>" class="btn btn-primary">Yes, Delete</a>
             </div>
           </div>
         </div>
       </div>
     
       <% } %>
+  
+  
+      <% if (posts) { %>
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModals<%= posts._id %>" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(11, 1, 1);">Edit your content</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/editWebAnalytics/<%= posts._id %>" method="POST">
+              <div class="modal-body">
+                <div class="col-sm-12">
+                  <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">Software Development</h6>
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="title" name="title" value="<%= posts.title %>" placeholder="Enter Text">
+                      <label for="title">Title</label>
+                    </div>
+      
+                    <div class="form-floating">
+                      <label for="description">Description</label>
+                      <textarea class="form-control" name="description" placeholder="Write description" id="description" style="height: 150px;">
+                        <%= posts.description %>
+                      </textarea>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="bg-secondary rounded h-100 p-4">
+                        <div class="m-n2">
+                          <button class="btn btn-primary w-100 m-2" type="submit">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+        
+        
+        
+        
+          <% } %>
+      
+     
+     
+     
