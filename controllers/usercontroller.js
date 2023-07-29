@@ -22,111 +22,133 @@ module.exports = {
     },
     userAbout: async (req, res) => {
         try {
-            res.render('user/About')
+            const aboutclass = "current-menu-item";
+            res.render('user/About',{aboutclass})
         } catch (err) {
             console.log(err);
         }
     },
     userService: async (req, res) => {
         try {
-            res.render('user/service')
+            const serviceclass = "current-menu-item";
+            res.render('user/service',{serviceclass})
         } catch (err) {
             console.log(err);
         }
     },
     userproduct: async (req, res) => {
         try {
+            const productclass = "current-menu-item";
             const products=await product.find()
             console.log(products);
-            res.render('user/product',{products})
+            res.render('user/product',{products,productclass})
         } catch (err) {
             console.log(err);
         }
     },
     softwareDevelopment: async (req, res) => {
         try {
+            const classes = "current-menu-item";
             const posts=await Post.findOne()
-            res.render('user/SoftwareDevelopment',{posts})
+            res.render('user/SoftwareDevelopment',{posts,classes})
         } catch (err) {
             console.log(err);
         }
     },
     webDevelopment: async (req, res) => {
         try {
+            const webclass = "current-menu-item";
             const posts=await Webdev.findOne()
-            res.render('user/webDevelopment',{posts})
+            res.render('user/webDevelopment',{posts,webclass})
         } catch (err) {
             console.log(err);
         }
     },
     mobileDevelopment: async (req, res) => {
         try {
+            const mobclass = "current-menu-item";
             const posts=await Mobdev.findOne()
-            res.render('user/mobileDevelopment',{posts})
+            res.render('user/mobileDevelopment',{posts,mobclass})
         } catch (err) {
             console.log(err);
         }
     },
     AppDevelopment: async (req, res) => {
         try {
+            const Appclass = "current-menu-item";
             const posts=await Appdev.findOne()
-            res.render('user/AppDevelopment',{posts})
+            res.render('user/AppDevelopment',{posts,Appclass})
         } catch (err) {
             console.log(err);
         }
     },
     Digitalmarketing: async (req, res) => {
         try {
+            const Digclass = "current-menu-item";
             const posts=await Digital.findOne()
-            res.render('user/Digitalmarketing',{posts})
+            res.render('user/Digitalmarketing',{posts,Digclass})
         } catch (err) {
             console.log(err);
         }
     },
     BuisnessConsulting: async (req, res) => {
         try {
+            const Busclass = "current-menu-item";
             const posts=await Buisness.findOne()
-            res.render('user/BuisnessConsulting',{posts})
+            res.render('user/BuisnessConsulting',{posts,Busclass})
         } catch (err) {
             console.log(err);
         }
     },
     WebAnalitic: async (req, res) => {
         try {
+            const Webclass = "current-menu-item";
             const posts=await WebAnalitic.findOne()
-            res.render('user/WebAnalitics',{posts})
+            res.render('user/WebAnalitics',{posts,Webclass})
         } catch (err) {
             console.log(err);
         }
     },
      Ecommerce: async (req, res) => {
         try {
+            const Ecoclass = "current-menu-item";
             const posts=await Ecommerce.findOne()
-            res.render('user/Ecommerce',{posts})
+            res.render('user/Ecommerce',{posts,Ecoclass})
         } catch (err) {
             console.log(err);
         }
     },
     EnterPrice: async (req, res) => {
         try {
+            const Entclass = "current-menu-item";
             const posts=await Enterprice.findOne()
-            res.render('user/EnterPriceDevelopment',{posts})
+            res.render('user/EnterPriceDevelopment',{posts,Entclass})
         } catch (err) {
             console.log(err);
         }
     },
     itstaf: async (req, res) => {
         try {
+            const Itsclass = "current-menu-item";
             const posts=await itstaf.findOne()
-            res.render('user/itstaf',{posts})
+            res.render('user/itstaf',{posts,Itsclass})
         } catch (err) {
             console.log(err);
         }
     },
     branding: async (req, res) => {
         try {
+            const Braclass = "current-menu-item";
             const posts=await Graphic.findOne()
-            res.render('user/Branding&Graphics',{posts})
+            res.render('user/Branding&Graphics',{posts,Braclass})
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    Contact: async (req, res) => {
+        try {
+            const contactclass = "current-menu-item";
+            res.render('user/Contact',{contactclass})
         } catch (err) {
             console.log(err);
         }

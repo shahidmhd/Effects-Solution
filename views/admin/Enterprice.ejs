@@ -12,7 +12,7 @@
             <input class="form-control bg-dark border-0" type="search" placeholder="Search">
         </form>
         <div class="navbar-nav align-items-center ms-auto">
-            <div class="nav-item dropdown">
+            <!-- <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                     <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                     <span class="d-none d-lg-inline-flex">John Doe</span>
@@ -22,7 +22,7 @@
                     <a href="#" class="dropdown-item">Settings</a>
                     <a href="#" class="dropdown-item">Log Out</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </nav>
     <!-- Navbar End -->
@@ -37,17 +37,17 @@
                     <div class="bg-secondary rounded h-100 p-4">
                         <h6 class="mb-4">EnterPrise Development</h6>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Text">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Text" required>
                             <label for="title">Title</label>
                         </div>
             
                         <div class="form-floating">
-                            <textarea class="form-control" name="description" placeholder="Leave a comment here" id="description" style="height: 150px;"></textarea>
+                            <textarea class="form-control" name="description" placeholder="Leave a comment here" id="description" style="height: 150px;" required></textarea>
                             <label for="description">Description</label>
                         </div>
                         <div>
                             <label for="formFileLg" class="form-label"></label>
-                            <input class="form-control form-control-lg bg-dark" id="formFileLg" name="image" type="file">
+                            <input class="form-control form-control-lg bg-dark" id="formFileLg" name="image" type="file" required>
                         </div>
                         <div class="col-sm-12">
                             <div class="bg-secondary rounded h-100 p-4">

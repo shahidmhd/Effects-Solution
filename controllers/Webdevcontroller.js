@@ -1,6 +1,5 @@
 const Webdev = require('../models/Weddevmodel')
 const cloudinary = require('../util/cloudinary')
-// const Post=require('../models/Postmodel')
 
 
 module.exports = {
@@ -21,32 +20,32 @@ module.exports = {
     },
     renderWebdev: async (req, res) => {
         try {
-            const posts=await Webdev.findOne()
-            res.render('admin/Addwebdevelopment', { layout: 'adminlayout',posts })
+            const posts = await Webdev.findOne()
+            res.render('admin/Addwebdevelopment', { layout: 'adminlayout', posts })
         } catch (err) {
             console.log(err);
         }
     },
-    DeletePost:async(req,res)=>{
-        try{
-            const {id} = req.params
-         await Webdev.findByIdAndDelete({ _id: id });
-         res.redirect('/admin/webdevelopment')
-        }catch(err){
+    DeletePost: async (req, res) => {
+        try {
+            const { id } = req.params
+            await Webdev.findByIdAndDelete({ _id: id });
+            res.redirect('/admin/webdevelopment')
+        } catch (err) {
             console.log(err);
         }
     },
-    editpost:async(req,res)=>{
-        try{
-        const {id} = req.params
-        const {title,description}=req.body
-        await Webdev.findByIdAndUpdate(
-            {_id:id},
-            {title:title,description:description }, // No need to destructure the description parameter
-            { new: true }
-          );
-         res.redirect('/admin/webdevelopment')
-        }catch(err){
+    editpost: async (req, res) => {
+        try {
+            const { id } = req.params
+            const { title, description } = req.body
+            await Webdev.findByIdAndUpdate(
+                { _id: id },
+                { title: title, description: description }, // No need to destructure the description parameter
+                { new: true }
+            );
+            res.redirect('/admin/webdevelopment')
+        } catch (err) {
             console.log(err);
         }
     }

@@ -17,6 +17,7 @@ router.get('/Ecommerce',usercontroller.Ecommerce)
 router.get('/EnterPrice',usercontroller.EnterPrice)
 router.get('/itstaf',usercontroller.itstaf)
 router.get('/branding',usercontroller.branding)
+router.get('/contact',usercontroller.Contact)
 
 
 

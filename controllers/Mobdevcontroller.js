@@ -1,6 +1,5 @@
 const Mobdev = require('../models/Mobdevmodel')
 const cloudinary = require('../util/cloudinary')
-// const Post=require('../models/Postmodel')
 
 
 module.exports = {

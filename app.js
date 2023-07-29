@@ -9,10 +9,10 @@ const expressEjsLayouts = require('express-ejs-layouts');
 const mongoose=require('mongoose')
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const nocache = require("nocache");
 
 dotenv.config()
 const app = express();
-console.log(__dirname,"views");
 // Set up view engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -24,6 +24,10 @@ app.use(express.urlencoded({ extended: false }));
 // Middleware to serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, "public")));
 app.use(session({resave:false,saveUninitialized: true,secret:"key",cookie:{maxAge:6000000}}));
+app.use(function (req, res, next) {
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
 
 // ... (other middleware and routes setup)
 
@@ -36,8 +40,8 @@ app.use("/admin",AdminRouter);
 
 // console.log(process.env.MONGO_URL);
 
-mongoose.connect("mongodb+srv://shahidvk1212:8sM93TPCAhXY1A9I@cynosure.9h8odhn.mongodb.net/").then(()=>{
-console.log("connected");
+mongoose.connect(process.env.MONGO_URL).then(()=>{
+console.log("Database connected");
 }).catch((error)=>{
   console.log(`database connection error${error}`);
 })

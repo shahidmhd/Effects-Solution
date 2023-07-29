@@ -1,7 +1,5 @@
 const Appdev = require('../models/Appdevmodel')
 const cloudinary = require('../util/cloudinary')
-// const Post=require('../models/Postmodel')
-
 
 module.exports = {
     AddAppdev: async (req, res) => {

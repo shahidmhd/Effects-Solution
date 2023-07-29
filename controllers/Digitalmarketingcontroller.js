@@ -1,6 +1,5 @@
 const Digital = require('../models/Digitalmarketing')
 const cloudinary = require('../util/cloudinary')
-// const Post=require('../models/Postmodel')
 
 
 module.exports = {
@@ -21,32 +20,32 @@ module.exports = {
     },
     renderDigitalmarketing: async (req, res) => {
         try {
-            const posts=await Digital.findOne()
-            res.render('admin/Digitalmarketing',{layout:"adminlayout",posts})
+            const posts = await Digital.findOne()
+            res.render('admin/Digitalmarketing', { layout: "adminlayout", posts })
         } catch (err) {
             console.log(err);
         }
     },
-    DeletePost:async(req,res)=>{
-        try{
-            const {id} = req.params
-         await Digital.findByIdAndDelete({ _id: id });
-         res.redirect('/admin/Digitalmarketing')
-        }catch(err){
+    DeletePost: async (req, res) => {
+        try {
+            const { id } = req.params
+            await Digital.findByIdAndDelete({ _id: id });
+            res.redirect('/admin/Digitalmarketing')
+        } catch (err) {
             console.log(err);
         }
     },
-    editpost:async(req,res)=>{
-        try{
-        const {id} = req.params
-        const {title,description}=req.body
-        await Digital.findByIdAndUpdate(
-            {_id:id},
-            {title:title,description:description }, // No need to destructure the description parameter
-            { new: true }
-          );
-          res.redirect('/admin/Digitalmarketing')
-        }catch(err){
+    editpost: async (req, res) => {
+        try {
+            const { id } = req.params
+            const { title, description } = req.body
+            await Digital.findByIdAndUpdate(
+                { _id: id },
+                { title: title, description: description }, // No need to destructure the description parameter
+                { new: true }
+            );
+            res.redirect('/admin/Digitalmarketing')
+        } catch (err) {
             console.log(err);
         }
     }

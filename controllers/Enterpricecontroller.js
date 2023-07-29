@@ -1,23 +1,18 @@
-const Enterprice=require('../models/Enterprice')
+const Enterprice = require('../models/Enterprice')
 const cloudinary = require('../util/cloudinary')
-// const Post=require('../models/Postmodel')
 
 
 module.exports = {
     AddEnterPrise: async (req, res) => {
         try {
             const post = await Enterprice.find()
-            console.log(post);
             if (post) {
                 await Enterprice.deleteMany({});
             }
-
-            // console.log(req.file.path,"hhhhhh");
             const result = await cloudinary.uploader.upload(req.file.path);
             const imageurl = result.url
-            console.log(imageurl);
             const { title, description } = req.body
-            await  Enterprice.create({ title, description, image: imageurl })
+            await Enterprice.create({ title, description, image: imageurl })
             res.redirect('/admin/Enterprise')
         } catch (err) {
             console.log(err);
@@ -25,34 +20,34 @@ module.exports = {
     },
     renderEnterprice: async (req, res) => {
         try {
-            const posts=await Enterprice.findOne()
-            res.render('admin/Enterprice', { layout: 'adminlayout',posts })
+            const posts = await Enterprice.findOne()
+            res.render('admin/Enterprice', { layout: 'adminlayout', posts })
         } catch (err) {
             console.log(err);
         }
     },
-    DeletePost:async(req,res)=>{
-        try{
-            const {id} = req.params
-         await Enterprice.findByIdAndDelete({ _id: id });
-         res.redirect('/admin/Enterprise')
-        }catch(err){
+    DeletePost: async (req, res) => {
+        try {
+            const { id } = req.params
+            await Enterprice.findByIdAndDelete({ _id: id });
+            res.redirect('/admin/Enterprise')
+        } catch (err) {
             console.log(err);
         }
     },
-    editpost:async(req,res)=>{
-        try{
-        const {id} = req.params
-        const {title,description}=req.body
-        await Enterprice.findByIdAndUpdate(
-            {_id:id},
-            {title:title,description:description }, // No need to destructure the description parameter
-            { new: true }
-          );
-          res.redirect('/admin/Enterprise')
-        }catch(err){
+    editpost: async (req, res) => {
+        try {
+            const { id } = req.params
+            const { title, description } = req.body
+            await Enterprice.findByIdAndUpdate(
+                { _id: id },
+                { title: title, description: description }, // No need to destructure the description parameter
+                { new: true }
+            );
+            res.redirect('/admin/Enterprise')
+        } catch (err) {
             console.log(err);
         }
     }
-    
+
 };
