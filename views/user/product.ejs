@@ -15,12 +15,12 @@
             <div class="col-lg-12">
                 <nav aria-label="breadcrumb">
                     <div class="pq-breadcrumb-title">
-                        <h1>4 Columns Wide</h1>
+                        <h1>Products</h1>
                     </div>
                     <div class="pq-breadcrumb-container">
                         <ol class="breadcrumb align-items-center">
                             <li class="breadcrumb-item"><a href="main-home.html"><i class="fa fa-home me-2"></i>Home</a></li>
-                            <li class="breadcrumb-item active">4 Columns Wide</li>
+                            <li class="breadcrumb-item active">products</li>
                         </ol>
                     </div>
                 </nav>
@@ -47,12 +47,15 @@
                             </ul>
                         </div>
                     </div>
+                
                     <div class="pq-grid " data-next_items="4" data-initial_items="8">
+                        <% if (products) { %>
+                            <% for (let i = 0; i < products.length; i++) { %>
                         <div class="pq-grid-item pq-filter-items pq-col-3  pq-crop-img  14  5 ">
                             <div class="pq-portfoliobox-2">
                                 <div class="pq-portfolio-img">
                                     <a href="#">
-                                        <img src="images/portfolio/portfolio-single/1.jpg" alt="">
+                                        <img src="<%= products[i].image %>" alt="">
                                     </a>
                                 </div>
                                 <div class="pq-portfolio-info">
@@ -60,12 +63,15 @@
                                         <a href="portfolio-single.html">Cloud</a>
                                         <a href="portfolio-single.html">Design</a>
                                     </div>
-                                    <h5><a href="portfolio-single.html">Professional Services</a></h5>
+                                    <h5><a href="portfolio-single.html"><%= products[i].title %></a></h5>
                                 </div>
                             </div>
+                            
                         </div>
-                    
-                        <div class="pq-grid-item pq-filter-items pq-col-3  pq-crop-img  5  8 ">
+                        <% } %>
+    
+                        <% } %>
+                        <!-- <div class="pq-grid-item pq-filter-items pq-col-3  pq-crop-img  5  8 ">
                             <div class="pq-portfoliobox-2">
                                 <div class="pq-portfolio-img">
                                     <a href="#">
@@ -216,7 +222,7 @@
                                     <h5><a href="portfolio-single.html">Product Inovation</a></h5>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="text-center">
                         <a href="#" class="pq-button" id="showMore">

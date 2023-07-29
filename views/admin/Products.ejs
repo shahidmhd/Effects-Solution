@@ -1,0 +1,187 @@
+<!-- Content Start -->
+<div class="content">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+        <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+            <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+        </a>
+        <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+        </a>
+        <form class="d-none d-md-flex ms-4">
+            <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+        </form>
+        <div class="navbar-nav align-items-center ms-auto">
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                    <span class="d-none d-lg-inline-flex">John Doe</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                    <a href="#" class="dropdown-item">My Profile</a>
+                    <a href="#" class="dropdown-item">Settings</a>
+                    <a href="#" class="dropdown-item">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+  
+  
+    <!-- Form Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            
+            <form action="/admin/addproduct" method="POST" enctype="multipart/form-data">
+                <div class="col-sm-12">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Add Product</h6>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Text">
+                            <label for="title">Title</label>
+                        </div>
+                        <div>
+                            <label for="formFileLg" class="form-label"></label>
+                            <input class="form-control form-control-lg bg-dark" id="formFileLg" name="image" type="file">
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="bg-secondary rounded h-100 p-4">
+                                <div class="m-n2">
+                                    <button class="btn btn-primary w-100 m-2" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- <div class="col-sm-6">
+                <img id="selectedImage" src="#" alt="Selected Image" style="display: none; height: 500px; max-width:800px;">
+            </div> -->
+        </div>
+    </div>
+
+
+    <% if (posts) { %>
+        <!-- Table Start -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+                <div class="col-12">
+                   
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">software Development</h6>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Title</th>
+                                     
+                                        <th scope="col">image</th>
+                                        <th scope="col">option</th>
+                                        <th scope="col">option</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let i = 0; i < posts.length; i++) { %>
+                                        <tr>
+                                            <th scope="row"><%= i + 1 %></th>
+                                            <td><%= posts[i].title %></td>
+                                            <td><img style="width: 50px; height: 50px;" src="<%= posts[i].image %>"></img></td>
+                                            <td><button type="button" class="btn btn-info rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModals<%= posts[i]._id %>">Edit</button></td>
+                                            <td><button type="button" class="btn btn-danger rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModal<%= posts[i]._id %>">Delete</button></td>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!-- Table End -->
+        <% } else { %>
+            <h1 style="color: red;">  images Not found</h1>
+        <% } %>
+    <!-- Footer End -->
+  </div>
+  <!-- Content End -->
+  
+  
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+
+
+
+
+
+  <!--  -->
+  <% if (posts) { %>
+    <% for (let i = 0; i < posts.length; i++) { %>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal<%= posts[i]._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(11, 1, 1);">Confirmation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a  href="/admin/deleteproduct/<%=posts[i]._id%>" class="btn btn-primary">Yes, Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+    
+      <% } %>
+  
+  
+      <% if (posts) { %>
+        <% for (let i = 0; i < posts.length; i++) { %>
+        <!-- Modal -->
+    <div class="modal fade" id="exampleModals<%= posts[i]._id %>" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(11, 1, 1);">Edit your content</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/admin/editproduct/<%= posts[i]._id %>" method="POST">
+              <div class="modal-body">
+                <div class="col-sm-12">
+                  <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">Software Development</h6>
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="title" name="title" value="<%= posts[i].title %>" placeholder="Enter Text">
+                      <label for="title">Title</label>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="bg-secondary rounded h-100 p-4">
+                        <div class="m-n2">
+                          <button class="btn btn-primary w-100 m-2" type="submit">Submit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+        
+        
+      <% } %>
+        
+          <% } %>
+      
+  

@@ -11,6 +11,7 @@ const Ecommercecontroller=require('../controllers/Ecommercecontroller')
 const Enterpricecontroller=require('../controllers/Enterpricecontroller')
 const itstafcontroller=require('../controllers/itstafcontroller')
 const Graphiccontroller=require('../controllers/GraphicDesigncontroller')
+const Productcontroller=require('../controllers/Productcontroller')
 const upload=require("../util/multer")
 
 router.get("/",(req,res)=>{
@@ -77,6 +78,12 @@ router.get('/GraphicDesigning',Graphiccontroller.renderGraphic)
 router.post('/addGraphic',upload.single('image'),Graphiccontroller.AddGraphic)
 router.get('/deleteGraphic/:id',Graphiccontroller.DeletePost)
 router.post('/editGraphic/:id',Graphiccontroller.editpost)
+
+router.get('/addproduct',Productcontroller.renderproduct)
+router.post('/addproduct',upload.single('image'),Productcontroller.Addproduct)
+router.get('/deleteproduct/:id',Productcontroller.Deleteproduct)
+router.post('/editproduct/:id',Productcontroller.editproduct)
+
 
 
 module.exports=router
