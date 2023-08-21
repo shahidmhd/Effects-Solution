@@ -13,8 +13,6 @@ module.exports = {
                 res.render('admin/login', { layout: "adminlayout", adminlogin: true,adminlogErr:req.session.admlogErr });
                 req.session.admlogErr=false;
             }
-
-
         } catch (err) {
             console.log(err);
             // Handle the error appropriately, such as sending an error response to the client
@@ -41,6 +39,7 @@ module.exports = {
             } else {
                 req.session.admin = email;
                 req.session.adminloggedIn = true;
+                req.session.admlogErr=false;
                 res.redirect('/admin')
             }
 
