@@ -13,6 +13,7 @@ const itstafcontroller=require('../controllers/itstafcontroller')
 const Graphiccontroller=require('../controllers/GraphicDesigncontroller')
 const Productcontroller=require('../controllers/Productcontroller')
 const Webhostcontroller=require('../controllers/Webhostingcontroller')
+const Technologycontroller=require('../controllers/Technologycontroller')
 const upload=require("../util/multer")
 const adminauth=require('../Middlewears/Adminauth')
 
@@ -89,6 +90,13 @@ router.get('/webhosting',adminauth.adminauth,Webhostcontroller.renderwebhosting)
 router.post('/addwebhost',adminauth.adminauth,upload.single('image'),Webhostcontroller.Addwebhost)
 router.get('/deletewebhost/:id',adminauth.adminauth,Webhostcontroller.DeleteWebhost)
 router.post('/editwebhost/:id',adminauth.adminauth,Webhostcontroller.editwebhost)
+
+
+router.get('/Technology',adminauth.adminauth,Technologycontroller.renderTechnology)
+router.post('/addTechnology',adminauth.adminauth,upload.single('image'),Technologycontroller.AddTechnology)
+router.get('/deleteTechnology/:id',adminauth.adminauth,Technologycontroller.DeleteTechnology)
+router.post('/editTechnology/:id',adminauth.adminauth,Technologycontroller.editTechnology)
+
 
 
 

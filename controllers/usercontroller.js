@@ -10,8 +10,8 @@ const Enterprice=require('../models/Enterprice')
 const itstaf=require('../models/itstafmodel')
 const Graphic=require('../models/GraphicDesignModel')
 const product = require('../models/Productmodel')
-const webhost = require('../models/webhostmodel')
 const Webhost = require('../models/webhostmodel')
+const Technology = require('../models/Technology')
 
 module.exports = {
     userHome: async (req, res) => {
@@ -157,17 +157,18 @@ module.exports = {
     },
     Webhosting: async (req, res) => {
         try {
-            // const contactclass = "current-menu-item";
+            const webhostclass = "current-menu-item";
             const posts=await Webhost.findOne()
-            res.render('user/webhosting',{posts})
+            res.render('user/webhosting',{posts,webhostclass})
         } catch (err) {
             console.log(err);
         }
     },
     Technology:async(req,res)=>{
         try {
-            // const contactclass = "current-menu-item";
-            res.render('user/technology')
+            const Technologyclass = "current-menu-item";
+            const posts=await Technology.findOne()
+            res.render('user/technology',{Technologyclass,posts})
         } catch (err) {
             console.log(err);
         }

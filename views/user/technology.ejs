@@ -78,9 +78,25 @@
                 </div>
             </div>
             <div class="col-xl-8 col-lg-8 mt-4 mt-lg-0">
-                <img src="images/about-us/1.png" alt="">
+                <% if (posts) { %>
+                    <% if (posts.image) { %>
+                        <img src="<%= posts?.image %>" alt="">
+                                <!-- <img style="width:45em; height: 35em;" src="<%= posts?.image %>" alt=""> -->
+                        <% } else { %>
+                            <img src="images/about-us/1.png" alt="">
+                            <% } %>
+                            <% if (posts.title) { %>
+                                <h2 class="pq-heading mt-4"><%= posts?.title %></h2>
+                                <% } else { %>
                 <h2 class="pq-heading mt-4">DEVELOP MOBILE APPLICATIONS</h2>
+                <% } %>
+                <% if (posts.description) { %>
+                    <p class="pq-description"><%= posts?.description %></p>
+                <% } else { %>
                 <p class="pq-description">Mobile application development for a wide range of emerging, modern businesses must be quick, effective, and interactive.</p>
+                <% } %>
+                <% } %>
+
                 <p>OUR WEB DEVELOPMENT & DESIGN SERVICES</p>
                 <p>This page contains all the information you need to complete your mobile app from conception to completion.</p>
                 <div class="row">

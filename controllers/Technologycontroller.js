@@ -3,51 +3,51 @@ const Technology = require('../models/Technology')
 
 module.exports = {
     
-    renderwebhosting: async (req, res) => {
+    renderTechnology: async (req, res) => {
         try {
             const posts = await Technology.findOne()
             const Technologyclass="active"
-            res.render('admin/Technology', { layout: "adminlayout",webhostingclass,posts})
+            res.render('admin/Technology', { layout: "adminlayout",Technologyclass,posts})
         } catch (err) {
             console.log(err);
         }
     },
-    Addwebhost: async (req, res) => {
+    AddTechnology: async (req, res) => {
         try {
-            const post = await webhost.find()
+            const post = await Technology.find()
             if (post) {
-                await webhost.deleteMany({});
+                await Technology.deleteMany({});
             }
             const result = await cloudinary.uploader.upload(req.file.path);
             const imageurl = result.url
             console.log(imageurl);
             console.log(req.body,"jjj");
             const { title, description } = req.body
-            await webhost.create({ title, description, image: imageurl })
-            res.redirect('/admin/webhosting')
+            await Technology.create({ title, description, image: imageurl })
+            res.redirect('/admin/Technology')
         } catch (err) {
             console.log(err);
         }
     },
-    DeleteWebhost: async (req, res) => {
+    DeleteTechnology: async (req, res) => {
         try {
             const { id } = req.params
-            await webhost.findByIdAndDelete({ _id: id });
-            res.redirect('/admin/webhosting')
+            await Technology.findByIdAndDelete({ _id: id });
+            res.redirect('/admin/Technology')
         } catch (err) {
             console.log(err);
         }
     },
-    editwebhost: async (req, res) => {
+    editTechnology: async (req, res) => {
         try {
             const { id } = req.params
             const { title, description } = req.body
-            await webhost.findByIdAndUpdate(
+            await Technology.findByIdAndUpdate(
                 { _id: id },
                 { title: title, description: description }, // No need to destructure the description parameter
                 { new: true }
             );
-            res.redirect('/admin/webhosting')
+            res.redirect('/admin/Technology')
         } catch (err) {
             console.log(err);
         }
