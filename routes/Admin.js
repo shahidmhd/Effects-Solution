@@ -12,6 +12,7 @@ const Enterpricecontroller=require('../controllers/Enterpricecontroller')
 const itstafcontroller=require('../controllers/itstafcontroller')
 const Graphiccontroller=require('../controllers/GraphicDesigncontroller')
 const Productcontroller=require('../controllers/Productcontroller')
+const Webhostcontroller=require('../controllers/Webhostingcontroller')
 const upload=require("../util/multer")
 const adminauth=require('../Middlewears/Adminauth')
 
@@ -82,6 +83,12 @@ router.get('/addproduct',adminauth.adminauth,Productcontroller.renderproduct)
 router.post('/addproduct',adminauth.adminauth,upload.single('image'),Productcontroller.Addproduct)
 router.get('/deleteproduct/:id',adminauth.adminauth,Productcontroller.Deleteproduct)
 router.post('/editproduct/:id',adminauth.adminauth,Productcontroller.editproduct)
+
+
+router.get('/webhosting',adminauth.adminauth,Webhostcontroller.renderwebhosting)
+router.post('/addwebhost',adminauth.adminauth,upload.single('image'),Webhostcontroller.Addwebhost)
+router.get('/deletewebhost/:id',adminauth.adminauth,Webhostcontroller.DeleteWebhost)
+router.post('/editwebhost/:id',adminauth.adminauth,Webhostcontroller.editwebhost)
 
 
 
