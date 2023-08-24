@@ -47,5 +47,24 @@ module.exports = {
         }catch(err){
             console.log(err);
         }
+    },
+    updateimageAppdev:async(req,res)=>{
+        try {
+            const { id } = req.params;
+            const result = await cloudinary.uploader.upload(req.file.path);
+            const imageurl = result.url;
+        
+            // Update only the image field
+            await Appdev.findByIdAndUpdate(
+                { _id: id },
+                { image: imageurl }, // Update only the image field
+                { new: true }
+            );
+            
+            res.redirect('/admin/Appdevelopment');
+        } catch (err) {
+            console.log(err);
+        }
+        
     }
 };

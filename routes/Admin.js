@@ -26,6 +26,7 @@ router.get('/form',adminauth.adminauth,Admincontroller.RenderForm)
 router.post('/addpost',adminauth.adminauth,upload.single('image'),Admincontroller.Addpost)
 router.get('/deletepost/:id',adminauth.adminauth,Admincontroller.DeletePost)
 router.post('/editpost/:id',adminauth.adminauth,Admincontroller.editpost)
+router.post('/editimagesoft/:id',adminauth.adminauth,upload.single('image'),Admincontroller.updateimage)
 
 router.post('/addwebdev',adminauth.adminauth,upload.single('image'),Webdevcontroller.AddWebdev)
 router.get('/webdevelopment',adminauth.adminauth,Webdevcontroller.renderWebdev)
@@ -41,6 +42,7 @@ router.get('/Appdevelopment',adminauth.adminauth,Appdevcontroller.renderAppdev)
 router.post('/addAppdev',adminauth.adminauth,upload.single('image'),Appdevcontroller.AddAppdev)
 router.get('/deleteApp/:id',adminauth.adminauth,Appdevcontroller.DeletePost)
 router.post('/editApppost/:id',adminauth.adminauth,Appdevcontroller.editpost)
+router.post('/editAppdev/:id',adminauth.adminauth,upload.single('image'),Appdevcontroller.updateimageAppdev)
 
 router.get('/Digitalmarketing',adminauth.adminauth,Digitalcontroller.renderDigitalmarketing)
 router.post('/AddDigitalmarketing',adminauth.adminauth,upload.single('image'),Digitalcontroller.AddDigital)
@@ -90,12 +92,15 @@ router.get('/webhosting',adminauth.adminauth,Webhostcontroller.renderwebhosting)
 router.post('/addwebhost',adminauth.adminauth,upload.single('image'),Webhostcontroller.Addwebhost)
 router.get('/deletewebhost/:id',adminauth.adminauth,Webhostcontroller.DeleteWebhost)
 router.post('/editwebhost/:id',adminauth.adminauth,Webhostcontroller.editwebhost)
+router.post('/editwebhostimage/:id',adminauth.adminauth,upload.single('image'),Webhostcontroller.updateimage)
 
 
 router.get('/Technology',adminauth.adminauth,Technologycontroller.renderTechnology)
 router.post('/addTechnology',adminauth.adminauth,upload.single('image'),Technologycontroller.AddTechnology)
 router.get('/deleteTechnology/:id',adminauth.adminauth,Technologycontroller.DeleteTechnology)
 router.post('/editTechnology/:id',adminauth.adminauth,Technologycontroller.editTechnology)
+router.post('/editTechnologyimage/:id',adminauth.adminauth,upload.single('image'),Technologycontroller.updateimage)
+
 
 
 
