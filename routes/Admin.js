@@ -16,6 +16,7 @@ const Webhostcontroller=require('../controllers/Webhostingcontroller')
 const Technologycontroller=require('../controllers/Technologycontroller')
 const Contactcontroller=require('../controllers/Contactcontroller')
 const Portfoliocontroller=  require('../controllers/Portfoliocontroller')
+const Vacancycontroller=require('../controllers/Vacencycontroller')
 const upload=require("../util/multer")
 const adminauth=require('../Middlewears/Adminauth')
 
@@ -118,7 +119,11 @@ router.get('/deletecontact/:id',adminauth.adminauth,Contactcontroller.DeleteCont
 
 router.get('/portfolio',adminauth.adminauth,Portfoliocontroller.renderportfolio)
 router.post('/addportfolio',adminauth.adminauth,upload.single('image'),Portfoliocontroller.Addportfolio)
+router.get('/deleteportfolio/:id',adminauth.adminauth,Portfoliocontroller.Deleteportfolio)
+router.post('/editportfolio/:id',adminauth.adminauth,Portfoliocontroller.editportfolio)
+router.post('/editimageportfolio/:id',adminauth.adminauth,upload.single('image'),Portfoliocontroller.updateimage)
 
-
+router.get('/jobvacancy',adminauth.adminauth,Vacancycontroller.rendervacancy)
+router.post('/addjobvacancy',adminauth.adminauth,Vacancycontroller.Addvacancy)
 
 module.exports=router

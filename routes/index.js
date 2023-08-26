@@ -22,6 +22,8 @@ router.get('/webhosting',usercontroller.Webhosting)
 router.get('/Technology',usercontroller.Technology)
 router.get('/Portfolio',usercontroller.Portfolio)
 router.post('/contactsubmit',usercontroller.Contactform)
+router.get('/Careers',usercontroller.rendercareer)
+router.post('/jobapply',usercontroller.applyedjobs)
 
 
 module.exports=router

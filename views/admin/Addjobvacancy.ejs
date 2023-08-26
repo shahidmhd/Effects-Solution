@@ -1,0 +1,69 @@
+
+<!-- Content Start -->
+<div class="content">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+        <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+            <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+        </a>
+        <a href="#" class="sidebar-toggler flex-shrink-0">
+            <i class="fa fa-bars"></i>
+        </a>
+        <form class="d-none d-md-flex ms-4">
+            <input class="form-control bg-dark border-0" type="search" placeholder="Search">
+        </form>
+        <div class="navbar-nav align-items-center ms-auto">
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Form Start -->
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            
+            <form action="/admin/addjobvacancy" method="POST">
+                <div class="col-sm-12">
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Add jobvacancy</h6>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="title" name="Position" placeholder="Enter Text" required>
+                            <label for="title">Enter Position</label>
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" name="description" placeholder="Enter Requirement" id="description" style="height: 150px;" required></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                        <div class="mb-3">
+                            <label for="startDate" class="form-label">Start Date</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="startDate" name="startDate" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="endDate" class="form-label">End Date</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="endDate" name="endDate" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="bg-secondary rounded h-100 p-4">
+                                <div class="m-n2">
+                                    <button class="btn btn-primary w-100 m-2" type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+            <!-- <div class="col-sm-6">
+                <img id="selectedImage" src="#" alt="Selected Image" style="display: none; height: 500px; max-width:800px;">
+            </div> -->
+        </div>
+    </div>
+    <!-- Form End -->
+</div>    
+
+
+

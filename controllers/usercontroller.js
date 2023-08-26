@@ -13,6 +13,8 @@ const product = require('../models/Productmodel')
 const Webhost = require('../models/webhostmodel')
 const Technology = require('../models/Technology')
 const Contact = require('../models/Contactsmodel')
+const portfolio = require('../models/portfoliomodel')
+const Jobvecancy = require('../models/Jobvacancymodel')
 
 module.exports = {
     userHome: async (req, res) => {
@@ -177,8 +179,9 @@ module.exports = {
     Portfolio: async (req, res) => {
         try {
             const portfolioclass = "current-menu-item";
-            
-            res.render('user/portfolio', { portfolioclass })
+            const posts = await portfolio.find()
+            console.log(posts,"hhhhfff");
+            res.render('user/portfolio', { portfolioclass,posts })
         } catch (err) {
             console.log(err);
         }
@@ -198,5 +201,23 @@ module.exports = {
         } catch (err) {
             console.log(err);
         }
+    },
+    rendercareer: async (req, res) => {
+        try {
+            const posts = await Jobvecancy.find()
+            res.render('user/Career',{posts})
+        } catch (err) {
+            console.log(err);
+        }
+    },
+    applyedjobs:async(req,res)=>{
+        try{
+            console.log(req.body,"hdbhfdbvdfjivn ejfnvjief");
+
+        }catch(err){
+            console.log(err);
+        }
     }
+    
+
 }
