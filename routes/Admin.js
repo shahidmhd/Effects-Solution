@@ -14,6 +14,7 @@ const Graphiccontroller=require('../controllers/GraphicDesigncontroller')
 const Productcontroller=require('../controllers/Productcontroller')
 const Webhostcontroller=require('../controllers/Webhostingcontroller')
 const Technologycontroller=require('../controllers/Technologycontroller')
+const Contactcontroller=require('../controllers/Contactcontroller')
 const upload=require("../util/multer")
 const adminauth=require('../Middlewears/Adminauth')
 
@@ -110,7 +111,8 @@ router.get('/deleteTechnology/:id',adminauth.adminauth,Technologycontroller.Dele
 router.post('/editTechnology/:id',adminauth.adminauth,Technologycontroller.editTechnology)
 router.post('/editTechnologyimage/:id',adminauth.adminauth,upload.single('image'),Technologycontroller.updateimage)
 
-
+router.get('/contacts',adminauth.adminauth,Contactcontroller.renderContacts)
+router.get('/deletecontact/:id',adminauth.adminauth,Contactcontroller.DeleteContact)
 
 
 
