@@ -6,8 +6,8 @@ module.exports = {
     renderContacts: async (req, res) => {
         try {
             const Datas = await Contact.find()
-            console.log(Datas, "jjjjjjjjjjjjjjjjjjjjjjjj");
-            res.render('admin/Contactspage',{ layout: 'adminlayout',Datas})
+            const Contactclass="active"
+            res.render('admin/Contactspage',{ layout: 'adminlayout',Contactclass,Datas})
         } catch (err) {
             console.log(err);
         }

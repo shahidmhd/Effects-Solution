@@ -15,6 +15,7 @@ const Productcontroller=require('../controllers/Productcontroller')
 const Webhostcontroller=require('../controllers/Webhostingcontroller')
 const Technologycontroller=require('../controllers/Technologycontroller')
 const Contactcontroller=require('../controllers/Contactcontroller')
+const Portfoliocontroller=  require('../controllers/Portfoliocontroller')
 const upload=require("../util/multer")
 const adminauth=require('../Middlewears/Adminauth')
 
@@ -113,6 +114,10 @@ router.post('/editTechnologyimage/:id',adminauth.adminauth,upload.single('image'
 
 router.get('/contacts',adminauth.adminauth,Contactcontroller.renderContacts)
 router.get('/deletecontact/:id',adminauth.adminauth,Contactcontroller.DeleteContact)
+
+
+router.get('/portfolio',adminauth.adminauth,Portfoliocontroller.renderportfolio)
+router.post('/addportfolio',adminauth.adminauth,upload.single('image'),Portfoliocontroller.Addportfolio)
 
 
 

@@ -174,6 +174,15 @@ module.exports = {
             console.log(err);
         }
     },
+    Portfolio: async (req, res) => {
+        try {
+            const portfolioclass = "current-menu-item";
+            
+            res.render('user/portfolio', { portfolioclass })
+        } catch (err) {
+            console.log(err);
+        }
+    },
     Contactform: async (req, res) => {
         try {
             const formData = {
