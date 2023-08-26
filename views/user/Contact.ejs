@@ -72,29 +72,34 @@
                             <h5 class="pq-section-title" id="quote" data-high_text="Quote" data-title_text="Request A Quote" data-rough_color="#fd4a18" data-rough_type="underline">Request A Quote</h5>
                             <p class="pq-section-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s</p>
                         </div>
-                        <form action="#" class="pq-contactform pq-applyform" novalidate>
+                        <form id="contact-form" action="/contactsubmit" method="post" class="pq-contactform " novalidate>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
-                                    <input type="text" id="first-name" class="name-field" placeholder="Your Name" required>
+                                    <input type="text" id="first-name" name="name" class="name-field" placeholder="Your Name">
+                                    <div class="error-message" style="color: red;" id="first-name-error"></div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
-                                    <input type="text" id="e-mail" class="e-mail-field" placeholder="Email" required>
+                                    <input type="text" id="e-mail" name="email" class="e-mail-field" placeholder="Email">
+                                    <div class="error-message" style="color: red;" id="e-mail-error"></div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
-                                    <input type="text" id="phone-number" class="phone-number-field" placeholder="Cell Phone" required>
+                                    <input type="tel" id="phone-number" name="phonenumber" class="phone-number-field" placeholder="Cell Phone">
+                                    <div class="error-message" style="color: red;" id="phone-number-error"></div>
                                 </div>
                                 <div class="col-lg-6 col-md-6">
-                                    <input type="text" id="subject" class="subject-field" placeholder="Subject" required>
+                                    <input type="text" id="subject" name="subject" class="subject-field" placeholder="Subject">
+                                    <div class="error-message" style="color: red;" id="subject-error"></div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea id="message" rows="5" cols="10" placeholder="Your Message" required></textarea>
+                                    <textarea id="message" name="message" rows="5" cols="10" placeholder="Your Message"></textarea>
+                                    <div class="error-message" style="color: red;" id="message-error"></div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <a class="pq-button form-btn">
+                                    <button type="submit" class="pq-button form-btn">
                                         <div class="pq-button-block">
                                             <span class="pq-button-text">Send Message</span>
                                         </div>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -277,3 +282,63 @@
         <a class="top" id="#top" href="#"> <i class="ion-ios-arrow-up"></i> </a>
     </div>
     <!--Back to top End-->
+
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            var isValid = true;
+            
+            function showError(fieldId, message) {
+                document.getElementById(fieldId + '-error').textContent = message;
+                isValid = false;
+            }
+    
+            function clearError(fieldId) {
+                document.getElementById(fieldId + '-error').textContent = '';
+            }
+            
+            // Validate first name
+            var firstName = document.getElementById('first-name').value;
+            if (firstName.trim() === '') {
+                showError('first-name', 'Please enter your name.');
+            } else {
+                clearError('first-name');
+            }
+    
+            // Validate email
+            var email = document.getElementById('e-mail').value;
+            if (!/^\S+@\S+\.\S+$/.test(email)) {
+                showError('e-mail', 'Please enter a valid email address.');
+            } else {
+                clearError('e-mail');
+            }
+    
+            // Validate phone number
+            var phoneNumber = document.getElementById('phone-number').value;
+            if (!/^\d{10}$/.test(phoneNumber)) {
+                showError('phone-number', 'Phone number must be 10 digits.');
+            } else {
+                clearError('phone-number');
+            }
+    
+            // Validate subject
+            var subject = document.getElementById('subject').value;
+            if (subject.trim() === '') {
+                showError('subject', 'Please enter a subject.');
+            } else {
+                clearError('subject');
+            }
+    
+            // Validate message
+            var message = document.getElementById('message').value;
+            if (message.trim() === '') {
+                showError('message', 'Please enter your message.');
+            } else {
+                clearError('message');
+            }
+    
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>

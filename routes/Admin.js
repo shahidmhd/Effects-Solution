@@ -32,11 +32,13 @@ router.post('/addwebdev',adminauth.adminauth,upload.single('image'),Webdevcontro
 router.get('/webdevelopment',adminauth.adminauth,Webdevcontroller.renderWebdev)
 router.get('/deleteWeb/:id',adminauth.adminauth,Webdevcontroller.DeletePost)
 router.post('/editwebpost/:id',adminauth.adminauth,Webdevcontroller.editpost)
+router.post('/editWebdevimage/:id',adminauth.adminauth,upload.single('image'),Webdevcontroller.updateimageWebdev)
 
 router.get('/Mobdevelopment',adminauth.adminauth,Mobdevcontroller.renderMobdev)
 router.post('/addMobdev',adminauth.adminauth,upload.single('image'),Mobdevcontroller.AddMobdev)
 router.get('/deleteMob/:id',adminauth.adminauth,Mobdevcontroller.DeletePost)
 router.post('/editMobpost/:id',adminauth.adminauth,Mobdevcontroller.editpost)
+router.post('/editmobdevimage/:id',adminauth.adminauth,upload.single('image'),Mobdevcontroller.updateimagemobdev)
 
 router.get('/Appdevelopment',adminauth.adminauth,Appdevcontroller.renderAppdev)
 router.post('/addAppdev',adminauth.adminauth,upload.single('image'),Appdevcontroller.AddAppdev)
@@ -48,11 +50,13 @@ router.get('/Digitalmarketing',adminauth.adminauth,Digitalcontroller.renderDigit
 router.post('/AddDigitalmarketing',adminauth.adminauth,upload.single('image'),Digitalcontroller.AddDigital)
 router.get('/deleteDigital/:id',adminauth.adminauth,Digitalcontroller.DeletePost)
 router.post('/editDigital/:id',adminauth.adminauth,Digitalcontroller.editpost)
+router.post('/editDigitalmarketingimage/:id',adminauth.adminauth,upload.single('image'),Digitalcontroller.updateimageDigitalmarket)
 
 router.get('/BuisnessConsulting',adminauth.adminauth,Buisnessconsultingcontroller.renderBuisness)
 router.post('/addBuisnessconsulting',adminauth.adminauth,upload.single('image'),Buisnessconsultingcontroller.AddBuisness)
 router.get('/deleteBuisness/:id',adminauth.adminauth,Buisnessconsultingcontroller.DeletePost)
 router.post('/editBuisnesspost/:id',adminauth.adminauth,Buisnessconsultingcontroller.editpost)
+router.post('/editBuisnessimage/:id',adminauth.adminauth,upload.single('image'),Buisnessconsultingcontroller.updateimageBuisness)
 
 
 
@@ -60,27 +64,32 @@ router.get('/WebAnalytics',adminauth.adminauth,webanalyticscontroller.renderWebA
 router.post('/addWebAnalytics',adminauth.adminauth,upload.single('image'),webanalyticscontroller.AddWebAnalytics)
 router.get('/deleteWebAlalytics/:id',adminauth.adminauth,webanalyticscontroller.DeletePost)
 router.post('/editWebAnalytics/:id',adminauth.adminauth,webanalyticscontroller.editpost)
+router.post('/editWebAnalyticsimage/:id',adminauth.adminauth,upload.single('image'),webanalyticscontroller.updateimageWebAnalitic)
 
 router.get('/Ecommerce',adminauth.adminauth,Ecommercecontroller.renderEcommerce)
 router.post('/AddEcommerce',adminauth.adminauth,upload.single('image'),Ecommercecontroller.AddEcommerce)
 router.get('/deleteEcommerce/:id',adminauth.adminauth,Ecommercecontroller.DeletePost)
 router.post('/editEcommerce/:id',adminauth.adminauth,Ecommercecontroller.editpost)
+router.post('/editEcommereceimage/:id',adminauth.adminauth,upload.single('image'),Ecommercecontroller.updateimageEcommerece)
 
 router.get('/Enterprise',adminauth.adminauth,Enterpricecontroller.renderEnterprice)
 router.post('/addEnterprise',adminauth.adminauth,upload.single('image'),Enterpricecontroller.AddEnterPrise)
 router.get('/deleteEnterprise/:id',adminauth.adminauth,Enterpricecontroller.DeletePost)
 router.post('/editEnterprise/:id',adminauth.adminauth,Enterpricecontroller.editpost)
+router.post('/editEnterpriseimage/:id',adminauth.adminauth,upload.single('image'),Enterpricecontroller.updateEnterpricedevimage)
 
 
 router.get('/itstaf',adminauth.adminauth,itstafcontroller.renderitstaf)
 router.post('/additstaf',adminauth.adminauth,upload.single('image'),itstafcontroller.Additstaf)
 router.get('/deleteitstaf/:id',adminauth.adminauth,itstafcontroller.DeletePost)
 router.post('/edititstaf/:id',adminauth.adminauth,itstafcontroller.editpost)
+router.post('/edititstafimage/:id',adminauth.adminauth,upload.single('image'),itstafcontroller.updateimageitstaf)
 
 router.get('/GraphicDesigning',adminauth.adminauth,Graphiccontroller.renderGraphic)
 router.post('/addGraphic',adminauth.adminauth,upload.single('image'),Graphiccontroller.AddGraphic)
 router.get('/deleteGraphic/:id',adminauth.adminauth,Graphiccontroller.DeletePost)
 router.post('/editGraphic/:id',adminauth.adminauth,Graphiccontroller.editpost)
+router.post('/editgraphicimage/:id',adminauth.adminauth,upload.single('image'),Graphiccontroller.updateGraphicdesign)
 
 router.get('/addproduct',adminauth.adminauth,Productcontroller.renderproduct)
 router.post('/addproduct',adminauth.adminauth,upload.single('image'),Productcontroller.Addproduct)

@@ -50,6 +50,25 @@ module.exports = {
         } catch (err) {
             console.log(err);
         }
+    },
+    updateimageWebAnalitic:async(req,res)=>{
+        try {
+            const { id } = req.params;
+            const result = await cloudinary.uploader.upload(req.file.path);
+            const imageurl = result.url;
+        
+            // Update only the image field
+            await WebAnalitic.findByIdAndUpdate(
+                { _id: id },
+                { image: imageurl }, // Update only the image field
+                { new: true }
+            );
+            
+            res.redirect('/admin/WebAnalytics')
+        } catch (err) {
+            console.log(err);
+        }
+        
     }
 
 };

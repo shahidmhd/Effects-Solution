@@ -1,5 +1,4 @@
 const admin = require('../models/Adminmodel');
-const bcrypt = require('bcrypt')
 const cloudinary = require('../util/cloudinary')
 const Post = require('../models/Postmodel')
 
@@ -20,9 +19,7 @@ module.exports = {
     },
     PostLogin: async (req, res) => {
         try {
-            console.log(req.body);
             const { email, password } = req.body;
-            console.log(email, password);
 
             const loginadmin = await admin.findOne({ email });
             if (!loginadmin) {
@@ -30,8 +27,13 @@ module.exports = {
                 req.session.admlogErr = "email does not exist....";
                 res.redirect('/admin/login')
             }
-            const passwordCorrect = await bcrypt.compare(password, loginadmin.password);
-            console.log(passwordCorrect);
+            let passwordCorrect
+            if(password===loginadmin.password){
+                passwordCorrect=true
+            }else{
+                passwordCorrect=false
+            }
+            // const passwordCorrect = await bcrypt.compare(password, loginadmin.password);
             if (!passwordCorrect) {
                 // res.render('admin/login', { layout: "adminlayout", adminlogin: true });
                 req.session.admlogErr = "incorrect password....";

@@ -20,6 +20,7 @@ router.get('/branding',usercontroller.branding)
 router.get('/contact',usercontroller.Contact)
 router.get('/webhosting',usercontroller.Webhosting)
 router.get('/Technology',usercontroller.Technology)
+router.post('/contactsubmit',usercontroller.Contactform)
 
 
 module.exports=router

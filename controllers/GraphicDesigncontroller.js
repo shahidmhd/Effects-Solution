@@ -48,6 +48,25 @@ module.exports = {
         } catch (err) {
             console.log(err);
         }
+    },
+    updateGraphicdesign:async(req,res)=>{
+        try {
+            const { id } = req.params;
+            const result = await cloudinary.uploader.upload(req.file.path);
+            const imageurl = result.url;
+        
+            // Update only the image field
+            await Graphic.findByIdAndUpdate(
+                { _id: id },
+                { image: imageurl }, // Update only the image field
+                { new: true }
+            );
+            
+            res.redirect('/admin/GraphicDesigning')
+        } catch (err) {
+            console.log(err);
+        }
+        
     }
 
 };
