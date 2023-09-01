@@ -98,6 +98,7 @@ router.get('/addproduct',adminauth.adminauth,Productcontroller.renderproduct)
 router.post('/addproduct',adminauth.adminauth,upload.single('image'),Productcontroller.Addproduct)
 router.get('/deleteproduct/:id',adminauth.adminauth,Productcontroller.Deleteproduct)
 router.post('/editproduct/:id',adminauth.adminauth,Productcontroller.editproduct)
+router.post('/editimageproduct/:id',adminauth.adminauth,upload.single('image'),Productcontroller.updateimage)
 
 
 router.get('/webhosting',adminauth.adminauth,Webhostcontroller.renderwebhosting)

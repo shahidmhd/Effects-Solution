@@ -1,6 +1,7 @@
 const express=require('express')
 const router = express.Router();
 const usercontroller = require('../controllers/usercontroller');
+const upload=require("../util/multer")
 
 router.get("/",usercontroller.userHome);
 router.get("/about",usercontroller.userAbout);
@@ -23,7 +24,7 @@ router.get('/Technology',usercontroller.Technology)
 router.get('/Portfolio',usercontroller.Portfolio)
 router.post('/contactsubmit',usercontroller.Contactform)
 router.get('/Careers',usercontroller.rendercareer)
-router.post('/jobapply',usercontroller.applyedjobs)
+router.post('/jobapply/:id',upload.single('pdf'),usercontroller.applyedjobs)
 
 
 module.exports=router

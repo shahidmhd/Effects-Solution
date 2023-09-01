@@ -202,10 +202,10 @@
                         <div class="col-sm-12">
                             <div class="bg-secondary rounded h-100 p-4">
                                 <h6 class="mb-4">Edit Technology</h6>
-                                <img src="<%= posts[i].image %>" alt="Post Image" style="max-width: 100%; height: auto;" id="selectedImage">
+                                <img src="<%= posts[i].image %>" alt="Post Image" style="max-width: 100%; height: auto;" id="selectedImage<%= posts[i]._id %>">
                                 <div>
                                     <label for="formFileLg" class="form-label">Select Image</label>
-                                    <input class="form-control form-control-lg bg-dark" id="imageUpload" name="image" type="file" onchange="updateImagePreview(this)" required>
+                                    <input class="form-control form-control-lg bg-dark" id="imageUpload" name="image" type="file" onchange="updateImagePreview(this, 'selectedImage<%= posts[i]._id %>')" required>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="bg-secondary rounded h-100 p-4">
@@ -231,14 +231,15 @@
     
     
     
-              <script>
-                function updateImagePreview(input) {
-                    if (input.files && input.files[0]) {
-                        const reader = new FileReader();
-                        reader.onload = function (e) {
-                            document.getElementById('selectedImage').src = e.target.result;
-                        };
-                        reader.readAsDataURL(input.files[0]);
-                    }
+          <script>
+            function updateImagePreview(input, imageId) {
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById(imageId).src = e.target.result;
+                    };
+                    reader.readAsDataURL(input.files[0]);
                 }
-            </script>
+            }
+        </script>
+        

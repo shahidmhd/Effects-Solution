@@ -15,6 +15,8 @@ const Technology = require('../models/Technology')
 const Contact = require('../models/Contactsmodel')
 const portfolio = require('../models/portfoliomodel')
 const Jobvecancy = require('../models/Jobvacancymodel')
+const cloudinary = require('../util/cloudinary')
+const JobApplication = require("../models/Jobapplymodal");
 
 module.exports = {
     userHome: async (req, res) => {
@@ -180,8 +182,7 @@ module.exports = {
         try {
             const portfolioclass = "current-menu-item";
             const posts = await portfolio.find()
-            console.log(posts,"hhhhfff");
-            res.render('user/portfolio', { portfolioclass,posts })
+            res.render('user/portfolio', { portfolioclass, posts })
         } catch (err) {
             console.log(err);
         }
@@ -205,19 +206,35 @@ module.exports = {
     rendercareer: async (req, res) => {
         try {
             const posts = await Jobvecancy.find()
-            res.render('user/Career',{posts})
+            res.render('user/Career', { posts })
         } catch (err) {
             console.log(err);
         }
     },
-    applyedjobs:async(req,res)=>{
-        try{
-            console.log(req.body,"hdbhfdbvdfjivn ejfnvjief");
+    applyedjobs: async (req, res) => {
+        try {
+            const result = await cloudinary.uploader.upload(req.file.path, { resource_type: "raw" }); // Specify resource_type as "raw"
+            const pdfUrl = result.url;
+            const existingApplication = await JobApplication.findOne({ email: req.body.email });
+            if (existingApplication) {
+                return res.redirect('/Careers')
+            }
+            const jobApplication = new JobApplication({
+                name: req.body.name,
+                email: req.body.email,
+                phone: req.body.phone,
+                experiance: req.body.experiance,
+                pdfUrl: pdfUrl
+            });
 
-        }catch(err){
+            await jobApplication.save(); // Save the instance
+
+            res.redirect('/Careers');
+
+        } catch (err) {
             console.log(err);
         }
     }
-    
+
 
 }
