@@ -17,6 +17,7 @@ const portfolio = require('../models/portfoliomodel')
 const Jobvecancy = require('../models/Jobvacancymodel')
 const cloudinary = require('../util/cloudinary')
 const JobApplication = require("../models/Jobapplymodal");
+// const nodemailer = require('nodemailer');
 
 module.exports = {
     userHome: async (req, res) => {
@@ -47,7 +48,6 @@ module.exports = {
         try {
             const productclass = "current-menu-item";
             const products = await product.find()
-            console.log(products);
             res.render('user/product', { products, productclass })
         } catch (err) {
             console.log(err);
@@ -198,6 +198,32 @@ module.exports = {
             };
             const newContact = new Contact(formData);
             await newContact.save();
+
+
+            // Send an email
+        //     const transporter = nodemailer.createTransport({
+        //         service: 'Gmail', // e.g., 'Gmail', 'Yahoo', etc.
+        //         auth: {
+        //             user: 'shahidvk1212@gmail.com',
+        //             pass: 'Ll224466'
+        //         }
+        //     });
+
+        //     const mailOptions = {
+        //         from: formData.email,
+        //         to: 'shahidvk1212@gmail.com', // Change to your recipient's email
+        //         subject: `New Contact Form Submission: ${formData.subject}`,
+        //         text: `
+        //   Name: ${formData.name}
+        //   Email: ${formData.email}
+        //   Phone Number: ${formData.phonenumber}
+        //   Subject: ${formData.subject}
+          
+        //   Message: ${formData.message}
+        // `
+        //     };
+
+        //     await transporter.sendMail(mailOptions);
             res.redirect('/contact');
         } catch (err) {
             console.log(err);

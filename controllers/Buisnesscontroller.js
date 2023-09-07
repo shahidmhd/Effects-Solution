@@ -6,13 +6,11 @@ module.exports = {
     AddBuisness: async (req, res) => {
         try {
             const post = await Buisness.find()
-            console.log(post);
             if (post) {
                 await Buisness.deleteMany({});
             }
             const result = await cloudinary.uploader.upload(req.file.path);
             const imageurl = result.url
-            console.log(imageurl);
             const { title, description } = req.body
             await Buisness.create({ title, description, image: imageurl })
             res.redirect('/admin/BuisnessConsulting')
