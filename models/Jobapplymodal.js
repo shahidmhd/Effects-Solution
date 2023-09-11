@@ -17,6 +17,10 @@ const jobApplicationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    position:{
+        type: String,
+        required: true
+    },
     pdfUrl: {
         type: String,
         required: true

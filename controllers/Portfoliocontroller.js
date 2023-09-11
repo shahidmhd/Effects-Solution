@@ -14,7 +14,7 @@ module.exports = {
     Addportfolio: async (req, res) => {
         try {
             const posts = await portfolio.find()
-            if (posts.length >= 6) {
+            if (posts.length >= 8) {
                 res.redirect('/admin/portfolio')
             } else {
                 const result = await cloudinary.uploader.upload(req.file.path);

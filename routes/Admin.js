@@ -17,6 +17,7 @@ const Technologycontroller=require('../controllers/Technologycontroller')
 const Contactcontroller=require('../controllers/Contactcontroller')
 const Portfoliocontroller=  require('../controllers/Portfoliocontroller')
 const Vacancycontroller=require('../controllers/Vacencycontroller')
+const Bannercontroller=require('../controllers/Bannercontroller')
 const upload=require("../util/multer")
 const adminauth=require('../Middlewears/Adminauth')
 
@@ -126,5 +127,15 @@ router.post('/editimageportfolio/:id',adminauth.adminauth,upload.single('image')
 
 router.get('/jobvacancy',adminauth.adminauth,Vacancycontroller.rendervacancy)
 router.post('/addjobvacancy',adminauth.adminauth,Vacancycontroller.Addvacancy)
+router.get('/deletejobvacancy/:id',adminauth.adminauth,Vacancycontroller.Deletevacancy)
+router.get('/deletevacancy/:id',adminauth.adminauth,Vacancycontroller.Deletejob)
+router.post('/editjobvacancy/:id',adminauth.adminauth,Vacancycontroller.Editvacancy)
 
+
+
+router.get('/bannerpage',adminauth.adminauth,Bannercontroller.renderBanner)
+router.post('/addBanner',adminauth.adminauth,upload.single('image'),Bannercontroller.AddBanner)
+router.get('/deletebanner/:id',adminauth.adminauth,Bannercontroller.DeleteBanner)
+router.post('/editimagebanner/:id',adminauth.adminauth,upload.single('image'),Bannercontroller.updateimage)
+router.post('/editbannertitle/:id',adminauth.adminauth,Bannercontroller.editbanner)
 module.exports=router

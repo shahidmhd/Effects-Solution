@@ -1,10 +1,10 @@
-  <!-- Loading Start-->
-  <div id="pq-loading">
-    <div id="pq-loading-center">
-        <img src="images/logos/logo-1.png" alt="loading">
+    <!-- Loading Start-->
+    <div id="pq-loading">
+        <div id="pq-loading-center">
+            <img src="images/logos/logo.png" alt="loading">
+        </div>
     </div>
-</div>
-<!--Loading End -->
+    <!--Loading End -->
 
  <!--Breadcrumb Start-->
  <div class="pq-breadcrumb pq-bg-dark pq-bg-img-2">
@@ -271,10 +271,14 @@
                     <h5 class="modal-title">Apply Form</h5>
                     <i class="fas fa-times custom-close-icon" data-bs-dismiss="modal" aria-label="Close" style="cursor: pointer;"></i>
                 </div>
+                
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="hidden" id="hiddenField" class="form-control" id="position"value="<%=posts[i].Position%>" name="position" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>

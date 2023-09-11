@@ -80,10 +80,11 @@
                                      
                                         <th scope="col">Email</th>
                                         <th scope="col">Phone</th>
+                                        <th scope="col">Position</th>
                                         <th scope="col">Experiance</th>
                                         <th scope="col">Applied Date</th>
                                         <th scope="col">option</th>
-                                       
+                                        <th scope="col">option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -93,9 +94,11 @@
                                             <td><%= posts[i].name %></td>
                                             <td><%= posts[i].email %></td>
                                             <td><%= posts[i].phone %></td>
+                                            <td><%= posts[i].position %></td>
                                             <td><%= posts[i].experiance %></td>
                                             <td><%= posts[i].customAppliedAt %></td>
-                                            <td><a href="<%= posts[i].pdfUrl %>" type="button" class="btn btn-info rounded-pill m-2" >View Resume</a></td>                                          
+                                            <td><a href="<%= posts[i].pdfUrl %>" type="button" class="btn btn-info rounded-pill m-2" >View Resume</a></td>  
+                                            <td><button type="button" class="btn btn-danger rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModal<%= posts[i]._id %>">Delete</button></td>                                        
                                         </tr>
                                     <% } %>
                                 </tbody>
@@ -108,9 +111,118 @@
         </div>
         <!-- Table End -->
         <% } else { %>
-            <h1 style="color: red;">  Not found</h1>
+          <!-- Table Start -->
+        <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+                <div class="col-12">
+                   
+                    <div class="bg-secondary rounded h-100 p-4">
+                        <h6 class="mb-4">Applyed Users</h6>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Name</th>
+                                     
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Experiance</th>
+                                        <th scope="col">Applied Date</th>
+                                        <th scope="col">option</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
         <% } %>
     <!-- Footer End -->
+    <% if (vacancy) { %>
+     <!-- Table Start -->
+     <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-12">
+               
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">Added Vacancy</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Position</th>
+                                 
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">End Date</th>
+                                    <th scope="col">option</th>
+                                    <th scope="col">option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let i = 0; i < vacancy.length; i++) { %>
+                                    <tr>
+                                        <th scope="row"><%= i + 1 %></th>
+                                        <td><%= vacancy[i].Position %></td>
+                                        <td><%= vacancy[i].description %></td>
+                                        <td><%= vacancy[i].startDate %></td>
+                                        <td><%= vacancy[i].endDate %></td>
+                                        <td><button type="button" class="btn btn-info rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModalls<%= vacancy[i]._id %>">Edit</button></td> 
+                                        <td><button type="button" class="btn btn-danger rounded-pill m-2" data-bs-toggle="modal" data-bs-target="#exampleModall<%= vacancy[i]._id %>">Delete</button></td>                                        
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+   
+    <% } else { %>
+         <!-- Table Start -->
+     <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-12">
+               
+                <div class="bg-secondary rounded h-100 p-4">
+                    <h6 class="mb-4">Added Vacancy</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Position</th>
+                                 
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">End Date</th>
+                                    <th scope="col">option</th>
+                                    <th scope="col">option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+   
+        <% } %>
+    <!-- Table End -->
 </div>    
 
 
@@ -118,3 +230,122 @@
 
 
 
+<% if (posts) { %>
+    <% for (let i = 0; i < posts.length; i++) { %>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal<%= posts[i]._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(11, 1, 1);">Confirmation</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a  href="/admin/deletejobvacancy/<%=posts[i]._id%>" class="btn btn-primary">Yes, Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <% } %>
+    <% } %>
+
+
+
+    <% if (vacancy) { %>
+        <% for (let i = 0; i < vacancy.length; i++) { %>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModall<%= vacancy[i]._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(11, 1, 1);">Confirmation</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <a  href="/admin/deletevacancy/<%=vacancy[i]._id%>" class="btn btn-primary">Yes, Delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <% } %>
+        <% } %>
+
+
+
+
+        <% if (vacancy) { %>
+            <% for (let i = 0; i < vacancy.length; i++) { %>
+            <!-- Modal -->
+        <div class="modal fade" id="exampleModalls<%= vacancy[i]._id %>" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel" style="color: rgb(11, 1, 1);">Edit job vacancy</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/admin/editjobvacancy/<%= vacancy[i]._id %>" method="POST">
+                  <div class="modal-body">
+                    <div class="col-sm-12">
+                      <div class="bg-secondary rounded h-100 p-4">
+            
+                        <div class="form-floating mb-3">
+                         
+                         
+                                <div class="col-sm-12">
+                                    <div class="bg-secondary rounded h-100 p-4">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control" id="title" name="Position" value="<%= vacancy[i].Position %>" placeholder="Enter Text" required>
+                                            <label for="title">Enter Position</label>
+                                        </div>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" name="description" placeholder="Enter Requirement"  id="description" style="height: 150px;" required><%= vacancy[i].description %></textarea>
+                                            <label for="description">Description</label>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="startDate" class="form-label">Start Date</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" value="<%= vacancy[i].startDate %>" id="startDate" name="startDate" required>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="endDate" class="form-label">End Date</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" value="<%= vacancy[i].endDate %>" id="endDate" name="endDate" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="bg-secondary rounded h-100 p-4">
+                                                <div class="m-n2">
+                                                    <button class="btn btn-primary w-100 m-2" type="submit">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+    
+          <% } %>
+            
+              <% } %>
+          
+      
